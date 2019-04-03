@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardtable">
+	
+	<!-- 1개 가져오기 -->
+	<select id="selectGetOne" parameterType="Integer" resultType="BoardTableVO">
+		select * from t1_board_table where bt_idx=#{bt_idx}
+	</select>
+	
+	<!-- 전체 가져오기 -->
+	<select id="selectAll" resultType="BoardTableVO">
+		select * from t1_board_table
+	</select>
+	
+	<!-- 테이블명 가져오기 -->
+	<select id="selectTable" parameterType="Integer" resultType="String">
+		select bt_table from t1_board_table where bt_idx=#{bt_idx}
+	</select>
+	
+	<!-- 테이블 만들기 -->
+	<insert id="insertTable" parameterType="java.util.HashMap">
+		insert into t1_board_table
+				(bt_idx,bt_table,gb_idx,gb_subject,bt_subject)
+			values
+				(bt_idx_seq.nextval,#{bt_table},#{gb_idx},#{gb_subject},#{bt_subject})
+	</insert>
+	
+	<!-- 시퀀스 만들기 -->
+	<update id="createBoardSeq" parameterType="java.util.HashMap">
+		CREATE SEQUENCE ${bt_table}_board_seq
+	</update>
+	
+	<!-- 시퀀스 만들기 -->
+	<update id="createReplySeq" parameterType="java.util.HashMap">
+		CREATE SEQUENCE ${bt_table}_reply_seq
+	</update>
+	
+	<!-- 시퀀스 만들기 -->
+	<update id="createFileSeq" parameterType="java.util.HashMap">
+		CREATE SEQUENCE ${bt_table}_file_seq
+	</update>
+	
+	<!-- 게시판 만들기 -->
+	<update id="createBoard" parameterType="java.util.HashMap">
+		CREATE TABLE t1_${bt_table}_board(
+				ab_idx NUMBER PRIMARY KEY,
+				mb_id VARCHAR2(20) NOT NULL,
+				mb_nickname VARCHAR2(50) NOT NULL,
+				ab_subject VARCHAR2(500) NOT NULL,
+				ab_content VARCHAR2(2000) NOT NULL,
+				ab_datetime TIMESTAMP DEFAULT SYSDATE,
+				ab_updatetime TIMESTAMP,
+				ab_hit NUMBER DEFAULT 0,
+				ab_ip VARCHAR2(20) NOT NULL
+		)
+	</update>
+	
+	<!-- 댓글 만들기 -->
+	<update id="createReply" parameterType="java.util.HashMap">
+		CREATE TABLE t1_${bt_table}_reply(
+				ar_idx NUMBER PRIMARY KEY,
+				ab_idx NUMBER NOT NULL,
+				ar_parents NUMBER NOT NULL,
+				ar_lev NUMBER NOT NULL,
+				mb_id VARCHAR2(20) NOT NULL,
+				mb_nickname VARCHAR2(50) NOT NULL,
+				ar_content VARCHAR2(1000) NOT NULL,
+				ar_ip VARCHAR2(20) NOT NULL,
+				ar_datetime TIMESTAMP DEFAULT SYSDATE,
+				ar_updatetime TIMESTAMP
+		)
+	</update>
+	
+	<!-- 파일 만들기 -->
+	<update id="createFile" parameterType="java.util.HashMap">
+		CREATE TABLE t1_${bt_table}_file(
+				file_idx NUMBER PRIMARY KEY,
+				ab_idx NUMBER NOT NULL,
+				file_original VARCHAR2(250) NOT NULL,
+				file_subfile VARCHAR2(250) NOT NULL
+		)
+	</update>
+	
+	<!-- 테이블 삭제하기 (게시판,댓글,파일)-->
+	<delete id="deleteTable" parameterType="String">
+		delete from t1_board_table where bt_table=#{bt_table}
+	</delete>
+	
+	<!-- 시퀀스 삭제 -->
+	<update id="dropBoardSeq" parameterType="String">
+		DROP SEQUENCE ${value}_board_seq
+	</update>
+	
+	<!-- 시퀀스 삭제 -->
+	<update id="dropReplySeq" parameterType="String">
+		DROP SEQUENCE ${value}_reply_seq
+	</update>
+	<!-- 시퀀스 삭제 -->
+	<update id="dropFileSeq" parameterType="String">
+		DROP SEQUENCE ${value}_file_seq
+	</update>
+	
+	<!-- 게시판 삭제 -->
+	<update id="dropBoard" parameterType="String">
+		DROP TABLE T1_${value}_BOARD
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<update id="dropReply" parameterType="String">
+		DROP TABLE T1_${value}_REPLY
+	</update>
+	
+	<!-- 파일 삭제 -->
+	<update id="dropFile" parameterType="String">
+		DROP TABLE T1_${value}_FILE
+	</update>
+	
+	<!-- 테이블 수정하기 -->
+	<update id="updateTable" parameterType="BoardTableVO">
+		update t1_board_table set 
+				bt_table=#{bt_table}, gb_subject=#{gb_subject}, bt_subject=#{bt_subject} 
+			where bt_idx=#{bt_idx}
+	</update>
+	
+</mapper>

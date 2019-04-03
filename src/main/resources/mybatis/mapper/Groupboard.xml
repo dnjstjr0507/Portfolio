@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="group.board">
+	
+	<!-- 전체 개수 구하기 -->
+	<select id="selectCount" resultType="int">
+		select count(*) from t1_group_board
+	</select>
+	
+	<!-- 목록 가져오기 -->
+	<select id="selectAll" resultType="GroupBoardVO">
+		select * from t1_group_board
+	</select>
+	
+	<!-- 그룹 번호 가져오기 -->
+	<select id="selectidx" parameterType="String" resultType="int">
+		select gb_idx from t1_group_board
+	</select>
+	
+	<!-- 1개 가져오기 -->
+	<select id="selectByIdx" parameterType="int" resultType="GroupBoardVO">
+		select * from t1_group_board where gb_idx=#{gb_idx}
+	</select>
+	
+	<!-- 저장 -->
+	<insert id="insertGroupBoard" parameterType="java.util.HashMap">
+		insert into t1_group_board
+			(gb_idx,gb_id,gb_subject)
+		values
+			(gb_idx_seq.nextval,#{gb_id},#{gb_subject})
+	</insert>
+	
+	<!-- 수정하기 -->
+	<update id="updateGroupBoard" parameterType="java.util.HashMap">
+		update t1_group_board set
+				gb_id=#{gb_id}, gb_subject=#{gb_subject}
+			where 
+				gb_idx=#{gb_idx}
+	</update>
+	
+	<!-- 삭제하기 -->
+	<delete id="deleteGroupBoard" parameterType="int">
+		delete from t1_group_board where gb_idx=#{gb_idx}
+	</delete>
+	
+	
+</mapper>

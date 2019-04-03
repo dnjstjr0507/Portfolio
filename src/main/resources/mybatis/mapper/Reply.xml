@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reply">
+	
+	<!-- 전체 개수 구하기 -->
+	<select id="selectCount" parameterType="HashMap" resultType="int">
+		select count(*) from t1_${bt_table}_reply where ab_idx=#{ab_idx}
+	</select>
+	
+	<!-- 전체 가져오기 -->
+	<select id="selectAll" parameterType="HashMap" resultType="ReplyVO">
+		select 
+			R.*
+		from
+			(select
+				rownum rnum, Q.*
+			from
+				(select * from t1_${bt_table}_reply where ab_idx=#{ab_idx} order by ar_parents, ar_idx ) Q
+			where
+				<![CDATA[
+				rownum <= #{endNo}) R
+				]]>
+		where
+			<![CDATA[
+			rnum >= #{startNo}
+			]]>
+	</select>
+	
+	<!-- 저장 -->
+	<insert id="insertReply" parameterType="ReplyVO">
+		insert into t1_${bt_table}_reply 
+				(ar_idx,ab_idx,ar_parents,ar_lev,mb_id,mb_nickname,ar_content,ar_ip,ar_datetime)
+			values
+				(${bt_table}_reply_seq.nextval,#{ab_idx},<if test="ar_parents == 0">${bt_table}_reply_seq.nextval</if><if test="ar_parents != 0">#{ar_parents}</if>,#{ar_lev},#{mb_id},#{mb_nickname},#{ar_content},#{ar_ip},SYSDATE)
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="updateReply" parameterType="ReplyVO">
+		update t1_${bt_table}_reply set
+				ar_content=#{ar_content}, ar_ip=#{ar_ip}, ar_updatetime=SYSDATE
+			where 
+				ar_idx=#{ar_idx} and ab_idx=#{ab_idx} and mb_id=#{mb_id}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteReply" parameterType="ReplyVO">
+		delete from t1_${bt_table}_reply where ar_idx=#{ar_idx} and ab_idx=#{ab_idx} and mb_id=#{mb_id}
+	</delete>
+	
+	<!-- 댓글 전체 삭제 -->
+	<delete id="deleteAllReply" parameterType="HashMap">
+		delete from t1_${bt_table}_reply where ab_idx=${ab_idx}
+	</delete>
+
+</mapper>

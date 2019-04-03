@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="menu">
+	
+	<!-- 전체 가져오기 -->
+	<select id="selectAll" resultType="MenuVO">
+		select * from t1_menu ORDER BY MENU_CODE, menu_sub
+	</select>
+	
+	<!-- 분류된것 가져오기 -->
+	<select id="listoflist" resultType="MenuVO">
+	SELECT 
+		MENU_CODE, MENU_SUB,MENU_NAME,bt_Table
+	FROM
+		T1_MENU
+	GROUP BY
+		 MENU_CODE, MENU_SUB, MENU_NAME,bt_table
+	ORDER BY 
+		MENU_CODE
+	</select>
+	
+	
+	<!-- 대분류 갯수 가져오기 -->
+	<select id="selectCountBig" parameterType="String" resultType="Integer">
+		select count(*) from t1_menu where menu_type=#{menu_type}
+	</select>
+	
+	<!-- 대분류의 소분류 갯수 가져오기 -->
+	<select id="selectCountmenucode" parameterType="String" resultType="Integer">
+		select count(*) from t1_menu where menu_code=#{code}
+	</select>
+	
+	<!-- 저장 -->
+	<insert id="insertMenu" parameterType="MenuVO">
+		insert into t1_menu
+				(menu_id,menu_code,menu_sub,menu_name,bt_table,menu_type,menulist_type,menu_use)
+			values
+				(menu_idx_seq.nextval,#{menu_code},#{menu_sub},#{menu_name},#{bt_table},#{menu_type},#{menulist_type},#{menu_use})
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="updateMenu" parameterType="Integer">
+		update t1_menu set
+					menu_use=#{menu_use}
+				where menu_id=#{menu_id}
+			
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteMenu" parameterType="Integer">
+		delete from t1_menu where menu_id=#{menu_id}
+	</delete>
+</mapper>

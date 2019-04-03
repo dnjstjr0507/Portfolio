@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="file">
+	
+	<!-- 갯수 가져오기 -->
+	<select id="selectCount" parameterType="HashMap" resultType="Integer">
+		select count(*) from T1_${bt_table}_FILE where ab_idx=#{ab_idx}
+	</select>
+	
+	<!-- 파일 전부 가져오기 -->
+	<select id="selectRefAll" parameterType="HashMap" resultType="FilesVO">
+		select * from t1_${bt_table}_file where ab_idx=#{ab_idx}
+	</select>
+	
+	<!-- 저장파일명 가져오기 -->
+	<select id="selectSubfilename" parameterType="HashMap" resultType="String">
+		select file_subfile from t1_${bt_table}_file where file_idx in #{file_idx}
+	</select>
+	
+	<!-- 파일 저장하기 -->
+	<insert id="insertFile" parameterType="FilesVO">
+		insert into t1_${bt_table}_file 
+				(file_idx,ab_idx,file_original,file_subfile)
+			values
+				(${bt_table}_file_seq.nextval,#{ab_idx},#{file_original},#{file_subfile})
+	</insert>
+	
+	<!-- 글의 파일 전부 삭제 -->
+	<delete id="deleteFileAll" parameterType="HashMap">
+		delete t1_${bt_table}_file where ab_idx=#{ab_idx}
+	</delete>
+	
+	<!-- 파일 삭제하기 -->
+	<delete id="deleteFile" parameterType="HashMap">
+		delete t1_${bt_table}_file where file_idx in (#{file_idx})
+	</delete>
+	
+</mapper>
