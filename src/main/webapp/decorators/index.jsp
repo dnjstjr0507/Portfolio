@@ -26,7 +26,7 @@
 	    <div class="navbar-collapse collapse show" id="navbarsExample07">
 	      <ul class="navbar-nav mr-auto">
 	        <li class="nav-item active">
-	          <a class="nav-link" href="${pageContext.request.contextPath }">Home</a>
+	          <a class="nav-link" href="${pageContext.request.contextPath }/">Home</a>
 	        </li>
 	        <c:if test="${empty mlist }">
 	        	&nbsp;&nbsp; 
