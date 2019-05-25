@@ -11,7 +11,7 @@
 <br>
 <h2>Demo</h2>
 <p>http://13.209.41.133:8080/</p>
-<h2>[Record]</h2>
+<h2>Record</h2>
 <p>19.04.02 mail service 아이디, 비밀번호 노출로 인해 아이디 비밀번호 제거</p><br>
 <p>19.04.03 localhost oracle -> AWS RDS oracle 11g로 변경</p><br>
 <p>19.04.10 EC2 tomcat9, Java8 설치후 프로젝트 실행 (http://13.209.41.133:8080/)</p><br>
