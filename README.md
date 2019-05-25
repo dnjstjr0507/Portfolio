@@ -8,6 +8,8 @@
   <li> SpringFramework 4.3.13</li>
   <li> Mybatis</li>
   <li> Maven</li>
+  <li> AWS RDS (oracle)</li>
+  <li> AWS EC2 </li>
 </ul>
 <br>
 <h2>Demo</h2>
