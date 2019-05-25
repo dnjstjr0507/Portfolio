@@ -1,6 +1,6 @@
 <h1>About</h1>
 <br>
-<h2>Prerequisites</h2>
+<h2>개발환경</h2>
 <ul>
   <li> IDE : Eclipse (sts)</li>
   <li> OS : Windows10
