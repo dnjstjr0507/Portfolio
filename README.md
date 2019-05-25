@@ -2,11 +2,12 @@
 <br>
 <h2>Prerequisites</h2>
 <ul>
+  <li> IDE : Eclipse (sts)</li>
+  <li> OS : Windows10
   <li> Java 8</li>
-  <li> SpringFramework</li>
+  <li> SpringFramework 4.3.13</li>
   <li> Mybatis</li>
   <li> Maven</li>
-  <li> Eclipse (sts)</li>
 </ul>
 <br>
 <h2>Demo</h2>
