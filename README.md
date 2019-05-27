@@ -15,7 +15,7 @@
 </ul>
 <br>
 <h2>ERD</h2>
-![ERD](https://github.com/dnjstjr0507/Portfolio/tree/master/src/main/webapp/resources/img/ERD.png)
+![ERD](https://user-images.githubusercontent.com/39077131/58403950-ef54a200-809e-11e9-9ee5-cb96ce558d4c.png)
 <br>
 <h2>Demo</h2>
 <p>http://13.209.41.133:8080/</p>
