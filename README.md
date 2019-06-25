@@ -31,6 +31,7 @@
 <li>19.04.03 localhost oracle -> AWS RDS oracle 11g로 변경</li>
 <li>19.04.10 EC2 tomcat9, Java8 설치후 프로젝트 실행 (http://13.209.41.133:8080/)</li>
 <li>19.04.15 index.jsp , adminPage.jsp ${pageContext.request.contextPath} -> ${pageContext.request.contextPath}/로 변경 #Home 으로 이동불가 오류 수정</li>
+<li>19.06.25 회원가입, 비밀번호 찾기, 인증 주소 수정</li>
 </ul>
 
 </div>
