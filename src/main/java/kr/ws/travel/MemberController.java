@@ -76,7 +76,7 @@ public class MemberController {
 					sb.append(memberVO.getMb_name() + "님 회원가입을 축하드립니다.<br>");
 					sb.append("링크를 클릭하여 이메일 인증을 하셔야 Travel 커뮤니티에 이용이 가능합니다.<br>");
 					helper.setText(
-							sb.append("<a href='http://13.209.41.133:8080/travel/confirm?mb_key=").append(mb_key)
+							sb.append("<a href='http://13.209.41.133:8080/confirm?mb_key=").append(mb_key)
 									.append("&mb_email=").append(memberVO.getMb_email()).append("&mb_id=")
 									.append(memberVO.getMb_id()).append("' target='_blank'>이메일 인증 확인</a>").toString(),
 							true);
