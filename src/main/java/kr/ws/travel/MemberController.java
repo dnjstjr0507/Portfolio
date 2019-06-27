@@ -275,7 +275,7 @@ public class MemberController {
 						final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8"); // true (html태그 사용 가능하게)	// "UTF-8"(UTF-8로 인코딩)
 						sb.append(getname + "님 집나간 비밀번호를 링크를 클릭하여 재설정 해주세요.<br>");
 						helper.setText(
-								sb.append("<a href='http://13.209.41.133:8080/travel/updatePW?mb_id=").append(mb_id)
+								sb.append("<a href='http://13.209.41.133:8080/updatePW?mb_id=").append(mb_id)
 									.append("&setkey=").append(setkey)
 									.append("' target='_blank'>비밀번호 재설정</a><br>")
 									.append("만약 비밀번호 재설정 요청을 하지 않으셨다면 고객센터에 문의 바랍니다. <br> 비밀번호를 변경하고 싶지 않다면 메일을 무시 하시면 됩니다.<br> ").toString(),
