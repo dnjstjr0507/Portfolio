@@ -21,7 +21,7 @@
 <img src="https://user-images.githubusercontent.com/39077131/58403950-ef54a200-809e-11e9-9ee5-cb96ce558d4c.png" ></img
 <br>
 <h2>Demo</h2>
-<p>http://http://13.209.89.44</p>
+<p>http://13.209.89.44</p>
 <br>
   </div>
   <div>
@@ -29,7 +29,7 @@
 <ul>
 <li> mail service 아이디, 비밀번호 노출로 인해 아이디 비밀번호 제거</li>
 <li> localhost oracle -> AWS RDS oracle 11g로 변경</li>
-<li> EC2 tomcat9, Java8 설치후 프로젝트 실행 (http://13.209.41.133)</li>
+<li> EC2 tomcat9, Java8 설치후 프로젝트 실행 http://13.209.89.44)</li>
 <li> 회원가입, 비밀번호 찾기, 인증 주소 수정</li>
 <li> security의 암호화를 이용하여 비밀번호 암호화 </li>
 </ul>
